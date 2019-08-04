@@ -1,6 +1,5 @@
 package LinkList;
 
-import LinkList.SingleLinkList.Node;
 
 /**
  * 
