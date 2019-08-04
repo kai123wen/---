@@ -7,9 +7,14 @@ package LinkList;
  * @class_name: LinkListCreate
  * @class_describe: 实现单链表，支持增删操作
  * @establish_time: 2019年8月4日 下午9:15:58
- * @how_to_use: LinkList link = new LinkList(); for (int i = 0; i < 5; i++) {
- *              link.addNode(i); } link.printLinkList(); link.deleteNode(2);
- *              link.printLinkList();
+ * @how_to_use: 
+ * LinkList link = new LinkList(); 
+ * 	for (int i = 0; i < 5; i++) {
+ *      link.addNode(i);
+ *      } 
+ *  link.printLinkList();
+ *  link.deleteNode(2);
+ *  link.printLinkList();
  */
 public class SingleLinkList {
 	class Node {
@@ -61,6 +66,7 @@ public class SingleLinkList {
 				temp.next = temp.next.next;
 			}
 		}
+		length--;
 	}
 
 	/*
