@@ -66,8 +66,8 @@ public class CycleLinkList {
 				}
 				temp.next = temp.next.next;
 			}
-		}
 		length--;
+		}
 	}
 
 	/*
