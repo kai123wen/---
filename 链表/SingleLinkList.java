@@ -65,8 +65,8 @@ public class SingleLinkList {
 				}
 				temp.next = temp.next.next;
 			}
+			length--;
 		}
-		length--;
 	}
 
 	/*
