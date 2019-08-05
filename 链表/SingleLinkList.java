@@ -4,17 +4,19 @@ package LinkList;
  * 
  * @author: Guo Zhenhao
  * @project_name: CodeWork
- * @class_name: LinkListCreate
+ * @class_name: SingleLinkList
  * @class_describe: 实现单链表，支持增删操作
  * @establish_time: 2019年8月4日 下午9:15:58
  * @how_to_use: 
- * LinkList link = new LinkList(); 
- * 	for (int i = 0; i < 5; i++) {
- *      link.addNode(i);
- *      } 
- *  link.printLinkList();
- *  link.deleteNode(2);
- *  link.printLinkList();
+ * SingleLinkList link = new SingleLinkList(); 
+ * for (int i = 0; i < 5; i++) { 
+ * 		link.addNode(i); 
+ * } 
+ * link.printLinkList();
+ * link.deleteNode(2);
+ * link.printLinkList();
+ * link.reverseLinkList();
+	link.printLinkList();
  */
 public class SingleLinkList {
 	class Node {
@@ -66,6 +68,24 @@ public class SingleLinkList {
 				temp.next = temp.next.next;
 			}
 			length--;
+		}
+	}
+
+	/*
+	 * 单链表反转
+	 */
+	public void reverseLinkList() {
+		if (head != null) {
+			Node curPre = head;
+			Node cur = head.next;
+			head.next = null;
+			while (cur != null) {
+				Node curNext = cur.next;
+				cur.next = curPre;
+				curPre = cur;
+				cur = curNext;
+			}
+			head = curPre;
 		}
 	}
 
