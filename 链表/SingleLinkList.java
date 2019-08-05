@@ -5,7 +5,7 @@ package LinkList;
  * @author: Guo Zhenhao
  * @project_name: CodeWork
  * @class_name: SingleLinkList
- * @class_describe: 实现单链表，支持增删操作
+ * @class_describe: 实现单链表，支持增删操作，实现单链表反转， 实现两个有序的链表合并为一个有序链表，实现求链表的中间结点
  * @establish_time: 2019年8月4日 下午9:15:58
  * @how_to_use: SingleLinkList link = new SingleLinkList(); for (int i = 0; i <
  *              5; i++) { link.addNode(i); } link.printLinkList();
@@ -80,10 +80,10 @@ public class SingleLinkList {
 	 * 实现两个有序的链表合并为一个有序链表
 	 */
 	public SingleLinkList merge(SingleLinkList linkOne, SingleLinkList linkTwo) {
-		Node headNew = null; //指向新的链表头节点
+		Node headNew = null; // 指向新的链表头节点
 		Node endNew = null; // 指向新的链表尾节点
-		Node linkNodeOne = linkOne.getHeadNode(); //获取到第一个链表
-		Node linkNodeTwo = linkTwo.getHeadNode(); //获取到第二个链表
+		Node linkNodeOne = linkOne.getHeadNode(); // 获取到第一个链表
+		Node linkNodeTwo = linkTwo.getHeadNode(); // 获取到第二个链表
 		while (linkNodeOne != null && linkNodeTwo != null) {
 			Node node = new Node();
 			if (linkNodeOne.data < linkNodeTwo.data) {
@@ -136,6 +136,30 @@ public class SingleLinkList {
 				cur = curNext;
 			}
 			head = curPre;
+		}
+	}
+
+	/*
+	 * 实现求链表中间节点
+	 */
+	public void getMidNodeData() {
+		// 如果是偶数个节点
+		if (length % 2 == 0) {
+			int mid = length / 2;
+			Node temp = head;
+			while (mid > 1) {
+				temp = temp.next;
+				mid--;
+			}
+			System.out.println("the mid node data are :" + temp.data + " and " + temp.next.data);
+		} else {
+			int mid = length / 2;
+			Node temp = head;
+			while (mid > 1) {
+				temp = temp.next;
+				mid--;
+			}
+			System.out.println("the mid node data is :" + temp.next.data);
 		}
 	}
 
