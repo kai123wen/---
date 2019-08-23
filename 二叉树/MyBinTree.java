@@ -18,43 +18,70 @@ public class MyBinTree {
 	// 二叉树根节点
 	Node root = null;
 
-	public Node insert(Node root, int data) {
-		Node x = search(root,data);
-		if (root == null)
-			root = x;
-		Node p = null;// 需要记录父节点
-		while (root != null)// 定位插入的位置
-		{
-			p = root;// 记录父节点
-			if (x.data < root.data)
-				root = root.left;
-			else
-				root = root.right;
-		}
-		x.parent = p;// 定位到合适的页节点的空白处后，根据和父节点的大小比较插入合适的位置
-		if (x.data < p.data)
-			p.left = x;
-		else if (x.data > p.data)
-			p.right = x;
-		return root;
+	// 插入
+	public void insert(int data) {
+		// 新建节点
+		Node node = new Node(data, null, null, null);
+		if (node != null)
+			root = insert(root, node);
 	}
 
-	// 二叉查找树插入：外部调用
-	public void insert(int data) {
-		insert(root, data,null);
+	/**
+	 * 递归版
+	 */
+	private Node insert(Node node, Node insert) {
+		if (node == null) {
+			node = insert;
+		}
+		if (insert.data < node.data) {
+			node.left = insert(node.left, insert);
+			node.left.parent = node;
+		} else if (insert.data > node.data) {
+			node.right = insert(node.right, insert);
+			node.right.parent = node;
+		}
+		return node;
 	}
+
+//	// 非递归版
+//	private void insert(Node node, Node insert) {
+//		if (root == null) {
+//			root = insert;
+//			return;
+//		}
+//		int cmp = 0;
+//		// 记录父节点
+//		Node p = null;
+//		while (node != null) {
+//			p = node;
+//			cmp = insert.data.compareTo(node.data);
+//			if (cmp < 0) {
+//				node = node.left;
+//			} else if (cmp > 0) {
+//				node = node.right;
+//			} else {
+//				return;
+//			}
+//		}
+//		insert.parent = p;
+//		if (cmp < 0) {
+//			p.left = insert;
+//		}else if (cmp > 0) {
+//			p.right = insert;
+//		}
+//	}
+//	
 
 	// 二叉查找树插入
-	public Node insert(Node root, int data, Node parent) {
+	public void insert(Node root, int data, Node parent) {
 		if (root == null) {
 			root = new Node(data, null, null, parent);
 		}
 		if (data < root.data) {
-			root.left = insert(root.left, data, root);
+			insert(root.left, data, root);
 		} else {
-			root.right = insert(root.right, data, root);
+			insert(root.right, data, root);
 		}
-		return root;
 	}
 
 	// 二叉查找树的后继节点
@@ -81,7 +108,7 @@ public class MyBinTree {
 
 	// 二叉查找树前驱节点
 	public Node getPreNode(int data) {
-		Node node = search(root,data);
+		Node node = search(root, data);
 		if (node.left != null) {
 			return getMaxNode(node.left);
 		}
@@ -104,7 +131,7 @@ public class MyBinTree {
 
 	// 二叉查找树删除
 	public void delete(int data) {
-		Node node = search(root,data); // 找到节点位置
+		Node node = search(root, data); // 找到节点位置
 		Node succeedNode = null;
 		if (node.right != null) {
 			succeedNode = getSucceedNode(data);
@@ -158,7 +185,7 @@ public class MyBinTree {
 		if (rootNode == null) {
 			return;
 		}
-		System.out.print(rootNode.data + ' ');
+		System.out.print(rootNode.data + "  ");
 		printTree(rootNode.left);
 		printTree(rootNode.right);
 	}
