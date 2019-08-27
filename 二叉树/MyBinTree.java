@@ -1,5 +1,9 @@
 package BInTree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class MyBinTree {
 	public class Node {
 		int data;
@@ -72,17 +76,6 @@ public class MyBinTree {
 //	}
 //	
 
-	// 二叉查找树插入
-	public void insert(Node root, int data, Node parent) {
-		if (root == null) {
-			root = new Node(data, null, null, parent);
-		}
-		if (data < root.data) {
-			insert(root.left, data, root);
-		} else {
-			insert(root.right, data, root);
-		}
-	}
 
 	// 二叉查找树的后继节点
 	public Node getSucceedNode(int data) {
@@ -188,5 +181,26 @@ public class MyBinTree {
 		System.out.print(rootNode.data + "  ");
 		printTree(rootNode.left);
 		printTree(rootNode.right);
+	}
+
+	// 层次遍历，供外部方法调用
+	public void searchLayer() {
+		searchLayer(root);
+	}
+
+	public void searchLayer(Node root) {
+		LinkedList<Node> nodeList = new LinkedList<Node>();
+		nodeList.offer(root);
+		while (!nodeList.isEmpty()) {
+			Node node = nodeList.poll();
+			System.out.print(node.data + " ");
+			if (node.left != null) {
+				nodeList.offer(node.left);
+			}
+			if (node.right != null) {
+				nodeList.offer(node.right);
+			}
+
+		}
 	}
 }
