@@ -128,4 +128,44 @@ public class MyGraphyouxianglinjiejuzhen {
 			System.out.println();
 		}
 	}
+
+	public static final int INF = 1000;
+
+	public void djstl(int vs, int[] pre, int[] dist) {
+		boolean[] flag = new boolean[mVexs.length];
+
+		for (int i = 0; i < mVexs.length; i++) {
+			flag[i] = false;
+			pre[i] = 0;// 定点 i 的前驱节点为0
+			dist[i] = mMatrix[vs][i]; // 顶点 vs 到 i 的距离为权重矩阵
+		}
+		flag[vs] = true;
+		dist[vs] = 0;
+		int k = 0; // 用于存放每一次循环找到的距离最小的点下标
+		// 遍历 array.length - 1 次
+		for (int i = 1; i < mVexs.length; i++) {
+			int min = INF;
+			for (int j = 0; j < mVexs.length; j++) {
+				if (flag[j] == false && min > dist[j]) {
+					min = dist[j];
+					k = j;
+				}
+			}
+			flag[k] = true;
+			dist[k] = min;
+
+			// 找到距离最小的点后，将其他还没有找到最短距离的点更新
+			for (int j = 0; j < flag.length; j++) {
+				int temp = mMatrix[k][j] == INF ? INF : (min + mMatrix[k][j]);
+				if (flag[j] == false && temp < mMatrix[k][j]) {
+					mMatrix[k][j] = temp;
+					pre[j] = k;
+				}
+			}
+		}
+		 // 打印dijkstra最短路径的结果
+	    System.out.printf("dijkstra(%c): \n", mVexs[vs]);
+	    for (int i=0; i < mVexs.length; i++)
+	        System.out.printf("  shortest(%c, %c)=%d\n", mVexs[vs], mVexs[i], dist[i]);
+	}
 }
