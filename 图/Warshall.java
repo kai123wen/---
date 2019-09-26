@@ -1,7 +1,15 @@
 package Graph;
 
-import java.io.PrintStream;
-
+/**
+ * 
+ * @author: Guo Zhenhao
+ * @project_name: CodeWork
+ * @class_name: Warshall 
+ * @class_describe: 
+ * warshell 思想主要就是一个利用一个十字形来对有向图的邻接矩阵进行操作
+ * @establish_time: 2019年9月26日 下午3:09:22
+ * @how_to_use:
+ */
 public class Warshall {
 	public static void main(String[] args) {
 		warshall();
